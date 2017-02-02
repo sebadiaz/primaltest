@@ -24,7 +24,11 @@ def calculateoneweek( filename, dateref):
         f.write(content)
 
 filename="complete.csv"
-os.remove(filename)
+try:
+    os.remove(filename)
+except OSError:
+    pass
+
 dateref=datetime.datetime.now()
 for x in range(0, 1404):
     calculateoneweek("complete.csv",dateref)

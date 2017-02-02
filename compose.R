@@ -24,8 +24,8 @@ for (ch in listV1) {
       lineComp[2:13]<-lapply(lineComp[2:13], function(x) as.numeric(as.character(x)))
       lineComp<-cbind(lineComp,data.frame((selOne[(iv+11),]$V6-selOne[(iv+10),]$V6)/selOne[(iv+10),]$V6))
       colnames(lineComp) <- paste("col", 1:14, sep = "")
-      
       byrowsSol<-rbind(byrowsSol,lineComp)
     }
   }
 }
+write.csv(byrowsSol, file = "MyData.csv")
