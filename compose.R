@@ -1,4 +1,7 @@
 library(lme4)
+
+nbValue=10
+space=2
 dat = read.csv("complete.csv", header = FALSE,sep = ";", dec=",")
 dat$V2=paste(substr(dat$V2,0,6),"20",substr(dat$V2,7,9),sep="")
 
@@ -16,14 +19,14 @@ for (ch in listV1) {
   selOne<-dat[dat$V1==ch,]
   
   for (iv in 1:(nrow(selOne)-1)) {
-    if(iv+11<nrow(selOne)&&!is.nan(selOne[(iv+11),]$V6)){
-      lineComp<-cbind(ch,t(scale(selOne[iv:(iv+11),]$V6,center = TRUE,scale = TRUE)))
-      lineComp[2:13]<-as.numeric(lineComp[2:13])
-      colnames(lineComp) <- paste("col", 1:13, sep = "")
+    if(iv+nbValue-1<nrow(selOne)&&!is.nan(selOne[(iv+nbValue-1),]$V6)){
+      lineComp<-cbind(ch,t(scale(selOne[iv:(iv+nbValue-1),]$V6,center = TRUE,scale = TRUE)))
+      lineComp[2:nbValue]<-as.numeric(lineComp[2:nbValue])
+
       lineComp=data.frame(lineComp)
-      lineComp[2:13]<-lapply(lineComp[2:13], function(x) as.numeric(as.character(x)))
-      lineComp<-cbind(lineComp,data.frame((selOne[(iv+11),]$V6-selOne[(iv+10),]$V6)/selOne[(iv+10),]$V6))
-      colnames(lineComp) <- paste("col", 1:14, sep = "")
+      lineComp[2:nbValue+1]<-lapply(lineComp[2:nbValue+1], function(x) as.numeric(as.character(x)))
+      lineComp<-cbind(lineComp,data.frame((selOne[(iv+nbValue),]$V6-selOne[(iv+nbValue-1),]$V6)/selOne[(iv+nbValue),]$V6))
+      colnames(lineComp) <- paste("col", (1:(nbValue+2)), sep = "")
       byrowsSol<-rbind(byrowsSol,lineComp)
     }
   }
