@@ -60,7 +60,7 @@ with open('alignedSorted.csv', 'w') as csvfile:
         if refidref=="":
                 refidref=row.idref
         if refidref!=row.idref:
-                for i in range(len(listValues)/nbValue):
+                for i in range(0,len(listValues)/nbValue,nbValue):
                         if i+nbValue+decay+ecart<len(listValues):
                                 norm =np.asarray(listValues[i:i+nbValue])
                                 taux=listValues[i+nbValue+decay+ecart]-listValues[i+nbValue+decay]
