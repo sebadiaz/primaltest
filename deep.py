@@ -6,6 +6,8 @@ from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from keras.optimizers import SGD
+from keras.layers import LSTM
+from keras.layers import Highway
 
 import pandas as pd
 import numpy as np
@@ -32,10 +34,10 @@ model = Sequential()
 # in the first layer, you must specify the expected input data shape:
 # here, 20-dimensional vectors.
 model.add(Dense(500, input_dim=input_dim, init='uniform'))
-model.add(Dense(500, input_dim=input_dim, init='uniform'))
-model.add(Dense(500, input_dim=input_dim, init='uniform'))
+
 model.add(Activation('tanh'))
 model.add(Dropout(0.6))
+model.add(Highway(activation = 'relu'))
 model.add(Dense(250, init='uniform'))
 model.add(Activation('tanh'))
 model.add(Dropout(0.5))
