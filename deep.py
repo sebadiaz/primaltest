@@ -32,6 +32,8 @@ model = Sequential()
 # in the first layer, you must specify the expected input data shape:
 # here, 20-dimensional vectors.
 model.add(Dense(500, input_dim=input_dim, init='uniform'))
+model.add(Dense(500, input_dim=input_dim, init='uniform'))
+model.add(Dense(500, input_dim=input_dim, init='uniform'))
 model.add(Activation('tanh'))
 model.add(Dropout(0.6))
 model.add(Dense(250, init='uniform'))
@@ -49,7 +51,7 @@ model.compile(loss='categorical_crossentropy',
               optimizer=sgd,
               metrics=['accuracy'])
 print("Training...")
-model.fit(X_train, y_train, nb_epoch=1, batch_size=100, validation_split=0.1, verbose=2)
+model.fit(X_train, y_train, nb_epoch=100, batch_size=100, validation_split=0.1, verbose=2)
 
 score = model.evaluate(X_test, y_test, batch_size=10000)
 print score

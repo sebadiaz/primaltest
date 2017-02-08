@@ -50,7 +50,7 @@ refidref=""
 listValues=[]
 nbValue=30
 decay=1
-ecart=2
+ecart=10
 with open('alignedSorted.csv', 'w') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=';',
                             quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -70,7 +70,7 @@ with open('alignedSorted.csv', 'w') as csvfile:
                                 
                                 if taux > 0.05 :
                                         score =1
-                                if taux > 0.2 :
+                                if taux > 0.1 :
                                         score =2                                        
                                 spamwriter.writerow([refidref]+preprocessing.scale(norm).tolist() +[taux,score])                        
                 refidref=row.idref               
