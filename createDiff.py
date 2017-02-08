@@ -51,6 +51,7 @@ listValues=[]
 nbValue=30
 decay=1
 ecart=10
+ecart=5
 with open('alignedSorted.csv', 'w') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=';',
                             quotechar='"', quoting=csv.QUOTE_MINIMAL)
